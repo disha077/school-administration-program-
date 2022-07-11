@@ -1,0 +1,49 @@
+def most_frequent(string):
+    d = dict()
+    for key in string:
+        if key not in d:
+            d[key] = 1
+        else:
+            d[key] += 1
+    return d
+
+print most_frequent('aabbbc')
+
+
+
+def frequency_analysis(string):
+    d = dict()
+    for key in string:
+        d[key] = d.get(key, 0) + 1
+    return d
+
+def letters_in_order_of_frequency(string):
+    frequencies = frequency_analysis(string)
+    # frequencies is of bounded size because number of letters is bounded by the dictionary, not the input size 
+    frequency_list = [(freq, letter) for (letter, freq) in frequencies.iteritems()]
+    frequency_list.sort(reverse=True)
+    return [letter for freq, letter in frequency_list]
+
+string = 'aabbbc'
+print letters_in_order_of_frequency
+
+
+
+
+import operator
+
+if __name__ == '__main__':
+
+    test_string = 'cnaa'
+
+    string_dict = dict()
+    for letter in test_string:
+        if letter not in string_dict:
+            string_dict[letter] = test_string.count(letter)
+
+    # Sort dictionary by values, credits go here http://stackoverflow.com/questions/613183/sort-a-dictionary-in-python-by-the-value/613218#613218
+    ordered_answer = sorted(string_dict.items(), key=operator.itemgetter(1), reverse=True)
+    print ordered_answer
+
+
+
